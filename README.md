@@ -68,6 +68,8 @@ The analysis showed that Red had the highest revenue in 2021, then Black in 2022
 - Partitioned by year
 - Ordered by total revenue descending
 
+![Yearly Color Revenue](docs/Highest Color Revenue each year.png)
+
 ### 2️⃣ Average Lead Time by Product Category
 - Aggregated `LeadTimeInBusinessDays`
 - Grouped by `ProductCategoryName`
