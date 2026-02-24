@@ -14,6 +14,8 @@ The solution follows a structured 3-layer data architecture:
 
 ## Architecture Design
 
+![Architecture Diagram](insight2profit-assessment-solution/docs/architecture_diagram.png)
+
 ### 1️⃣ Raw Layer
 - Direct ingestion of CSV files
 - No transformation
@@ -68,11 +70,14 @@ The analysis showed that Red had the highest revenue in 2021, then Black in 2022
 - Partitioned by year
 - Ordered by total revenue descending
 
-![Yearly Color Revenue](docs/Highest Color Revenue each year.png)
+![Yearly Color Revenue](insight2profit-assessment-solution/docs/Highest%20Color%20Revenue%20each%20year.png)
 
 ### 2️⃣ Average Lead Time by Product Category
+Also, the analysis showed that the Average lead time in business days is about 4.7 approximately
 - Aggregated `LeadTimeInBusinessDays`
 - Grouped by `ProductCategoryName`
+
+![Average Lead Tim in Business days](insight2profit-assessment-solution/docs/Average%20Lead%20Time%20in%20Business%20days.png)
 
 ---
 
