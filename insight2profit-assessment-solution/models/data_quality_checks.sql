@@ -4,6 +4,9 @@ select * from raw.raw_sales_order_detail;
 
 select * from raw.raw_sales_order_header;
 
+SELECT COUNT(*) FROM raw.raw_product;
+SELECT COUNT(*) FROM store.store_product;
+
 select * from store.store_product
 where product_id = 884;
 
