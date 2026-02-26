@@ -16,19 +16,19 @@ The solution follows a structured 3-layer data architecture:
 
 ![Architecture Diagram](insight2profit-assessment-solution/docs/architecture_diagram.png)
 
-### 1️⃣ Raw Layer
+### Raw Layer
 - Direct ingestion of CSV files
 - No transformation
 - All columns stored as TEXT
 - Preserves source system integrity
 
-### 2️⃣ Store Layer
+### Store Layer
 - Explicit data typing (INT, DATE, NUMERIC)
 - Primary keys enforced
 - Foreign key relationships enforced
 - Ensures relational integrity
 
-### 3️⃣ Publish Layer
+### Publish Layer
 - Business logic transformations applied
 - Derived metrics calculated
 - Analytics-ready tables
@@ -64,7 +64,7 @@ Used PostgreSQL `generate_series()` to calculate business days:
 
 ## Analysis and Result
 
-### 1️⃣ Highest Revenue Color Per Year
+### Highest Revenue Color Per Year
 The analysis showed that Red had the highest revenue in 2021, then Black in 2022 and 2023, while Yellow had the highest revenue in 2024
 - Used `RANK()` window function
 - Partitioned by year
@@ -72,7 +72,7 @@ The analysis showed that Red had the highest revenue in 2021, then Black in 2022
 
 ![Yearly Color Revenue](insight2profit-assessment-solution/docs/Highest%20Color%20Revenue%20each%20year.png)
 
-### 2️⃣ Average Lead Time by Product Category
+### Average Lead Time by Product Category
 Also, the analysis showed that the Average lead time in business days is about 4.7 approximately
 - Aggregated `LeadTimeInBusinessDays`
 - Grouped by `ProductCategoryName`
@@ -98,16 +98,22 @@ Also, the analysis showed that the Average lead time in business days is about 4
 ## Data Quality Checks and Validation
 Before applying transformations, I performed structured data quality checks to ensure reliability and integrity of the dataset.
 
-### 1️⃣ Row Count Validation
+### Row Count Validation
 - Verified record counts after ingestion into the `raw` schema.
 - Compared row counts between `raw` and `store` layers to ensure no unintended data loss during type casting.
 
-### 2️⃣ Null Value Analysis
+### Null Value Analysis
 Checked for unexpected NULL values across key fields.
 - Ensured primary key fields were non-null before applying constraints.
 - Identified nullable business fields (e.g., Color, ProductCategoryName) and handled them appropriately in the publish layer.
 
-### 3️⃣ Duplicate Handling – Product Table
+### NULL Handling Strategy
+- Primary and foreign key columns are enforced as NOT NULL to preserve referential integrity.
+- Business descriptive fields (e.g., Color, ProductCategoryName) are allowed to be NULL in the store layer.
+- Required business defaults (e.g., Color = 'N/A') are applied in the publish layer as specified in the case study.
+- In a production environment, such cleansing would typically occur earlier in the transformation pipeline.
+
+### Duplicate Handling – Product Table
 Identified duplicate ProductId records in the raw dataset.
 To ensure data consistency:
 - Retained the record containing the most complete (non-null) information.
@@ -122,7 +128,7 @@ This ensures:
 2. Downstream referential integrity is maintained.
 3. No arbitrary deletion of data.
 
-### 4️⃣ Referential Integrity Validation
+### Referential Integrity Validation
 - Verified that all `SalesOrderDetail.ProductId` values exist in Product.
 - Verified that all `SalesOrderDetail.SalesOrderId` values exist in SalesOrderHeader.
 - Foreign key constraints were then enforced in the store schema.
