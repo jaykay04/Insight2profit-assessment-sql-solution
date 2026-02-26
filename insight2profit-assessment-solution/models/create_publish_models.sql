@@ -39,9 +39,6 @@ SELECT
 
 FROM store.store_product;
 
-select * from publish.publish_product;
-
-
 --Publish Order Table
 CREATE TABLE publish.publish_orders AS
 SELECT
@@ -71,5 +68,3 @@ SELECT
 FROM store.store_sales_order_detail d
 JOIN store.store_sales_order_header h
 ON d.sales_order_id = h.sales_order_id;
-
-select * from publish.publish_orders;
