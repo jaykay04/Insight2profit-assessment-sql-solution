@@ -1,7 +1,8 @@
 /* ============================================================
-   ENFORCE NOT NULL ON PRIMARY KEYS
+   CONSTRAINTS & RELATIONAL INTEGRITY
 ============================================================ */
 
+-- Enforce NOT NULL for primary keys
 ALTER TABLE store.store_product
 ALTER COLUMN product_id SET NOT NULL;
 
@@ -11,20 +12,14 @@ ALTER COLUMN sales_order_id SET NOT NULL;
 ALTER TABLE store.store_sales_order_detail
 ALTER COLUMN sales_order_detail_id SET NOT NULL;
 
-/* ============================================================
-   ENFORCE NOT NULL ON FOREIGN KEYS
-============================================================ */
-
+-- Enforce NOT NULL for foreign keys
 ALTER TABLE store.store_sales_order_detail
 ALTER COLUMN sales_order_id SET NOT NULL;
 
 ALTER TABLE store.store_sales_order_detail
 ALTER COLUMN product_id SET NOT NULL;
 
-/* ============================================================
-   ADD PRIMARY AND FOREIGN KEY CONTRAINTS
-============================================================ */
-
+-- Primary Keys
 ALTER TABLE store.store_product
 ADD PRIMARY KEY (product_id);
 
@@ -34,6 +29,7 @@ ADD PRIMARY KEY (sales_order_id);
 ALTER TABLE store.store_sales_order_detail
 ADD PRIMARY KEY (sales_order_detail_id);
 
+-- Foreign Keys
 ALTER TABLE store.store_sales_order_detail
 ADD CONSTRAINT fk_salesorder
 FOREIGN KEY (sales_order_id)
