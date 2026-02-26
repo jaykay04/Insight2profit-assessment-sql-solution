@@ -1,6 +1,9 @@
 --PUBLISH MODEL (Business Transformations based on Business Requirements Specification)
+--Rebuild publish layer - safe to rerun
 
 --Publish Product Table
+DROP TABLE IF EXISTS publish.publish_product;
+
 CREATE TABLE publish.publish_product AS
 SELECT
     product_id,
@@ -40,6 +43,8 @@ SELECT
 FROM store.store_product;
 
 --Publish Order Table
+DROP TABLE IF EXISTS publish.publish_orders;
+
 CREATE TABLE publish.publish_orders AS
 SELECT
     d.*,
