@@ -7,7 +7,7 @@ This project implements the Insight2Profit assessment case study using PostgreSQ
 The solution follows a structured 3-layer data architecture:
 
 - **raw schema** → Landing layer (no transformations)
-- **store schema** → Typed relational layer (Enforce Data Types PKs & FKs constrainta)
+- **store schema** → Typed relational layer (Enforce Data Types PKs & FKs constraints)
 - **publish schema** → Business-transformed analytics layer
 
 ---
